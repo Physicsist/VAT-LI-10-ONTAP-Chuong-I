@@ -1,0 +1,1609 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ôn Tập Chương 1: Mở Đầu - Vật Lí 10</title>
+    <!-- KaTeX for Math Rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <style>
+        :root {
+            --primary: #0f766e;
+            --primary-dark: #115e59;
+            --primary-light: #f0fdfa;
+            --accent: #0284c7;
+            --success: #16a34a;
+            --success-bg: #dcfce7;
+            --danger: #dc2626;
+            --danger-bg: #fee2e2;
+            --warning: #d97706;
+            --warning-bg: #fef3c7;
+            --text: #1e293b;
+            --text-muted: #64748b;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding-bottom: 50px;
+        }
+
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 20px 16px;
+        }
+
+        /* Header */
+        .app-header {
+            text-align: center;
+            background: linear-gradient(135deg, #0f766e, #0284c7);
+            color: white;
+            padding: 26px 20px;
+            border-radius: 16px;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 25px -5px rgba(15, 118, 110, 0.3);
+        }
+
+        .app-header h1 {
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .app-header p {
+            font-size: 0.95rem;
+            opacity: 0.92;
+        }
+
+        .topic-pills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .topic-pill {
+            background: rgba(255, 255, 255, 0.18);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Card general */
+        .card {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
+            margin-bottom: 20px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Onboarding Form */
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.15);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn-success {
+            background-color: var(--success);
+            color: white;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1.5px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-light);
+        }
+
+        /* Student Info Bar */
+        .student-bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            padding: 12px 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
+            font-size: 0.92rem;
+            gap: 10px;
+        }
+
+        .student-bar span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Level Tabs */
+        .level-tabs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .level-tab {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 14px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .level-tab.active {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .level-tab.locked {
+            opacity: 0.75;
+            background: #f1f5f9;
+        }
+
+        .level-tab-title {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .level-tab-sub {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Progress Banner */
+        .level-status-banner {
+            background: var(--warning-bg);
+            border-left: 4px solid var(--warning);
+            padding: 14px 18px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .badge-streaks {
+            display: flex;
+            gap: 6px;
+        }
+
+        .star-slot {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #fde68a;
+            border: 2px solid #d97706;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: transparent;
+        }
+
+        .star-slot.filled {
+            background: #f59e0b;
+            color: white;
+        }
+
+        /* Question Card */
+        .question-card {
+            background: white;
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 18px;
+            border: 1px solid var(--border);
+            transition: all 0.2s;
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .question-badges {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .question-number {
+            background: var(--primary-light);
+            color: var(--primary);
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.86rem;
+        }
+
+        .question-topic-tag {
+            background: #f1f5f9;
+            color: #475569;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.78rem;
+        }
+
+        .question-text {
+            font-size: 1.05rem;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        .svg-container {
+            display: flex;
+            justify-content: center;
+            margin: 16px 0;
+            background: #fafafa;
+            border-radius: 10px;
+            padding: 14px;
+            border: 1px dashed #cbd5e1;
+            overflow-x: auto;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        @media (max-width: 600px) {
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+            .level-tabs {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .option-btn {
+            text-align: left;
+            padding: 12px 16px;
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            background: white;
+            cursor: pointer;
+            font-size: 0.98rem;
+            transition: all 0.15s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .option-btn:disabled {
+            cursor: default;
+        }
+
+        .option-label {
+            font-weight: 700;
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            background: #f1f5f9;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .option-btn.correct {
+            background-color: var(--success-bg);
+            border-color: var(--success);
+            color: #065f46;
+            font-weight: 600;
+        }
+
+        .option-btn.correct .option-label {
+            background-color: var(--success);
+            color: white;
+        }
+
+        .option-btn.wrong {
+            background-color: var(--danger-bg);
+            border-color: var(--danger);
+            color: #991b1b;
+        }
+
+        .option-btn.wrong .option-label {
+            background-color: var(--danger);
+            color: white;
+        }
+
+        /* Explanation Box */
+        .explanation-box {
+            margin-top: 14px;
+            padding: 14px 16px;
+            border-radius: 10px;
+            font-size: 0.94rem;
+            background: #f8fafc;
+            border-left: 4px solid var(--primary);
+            animation: fadeIn 0.25s ease-in-out;
+        }
+
+        .explanation-box.correct-exp {
+            border-left-color: var(--success);
+            background: #f0fdf4;
+        }
+
+        .explanation-box.wrong-exp {
+            border-left-color: var(--danger);
+            background: #fef2f2;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Teacher Bypass Subtle Input */
+        .locked-screen {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .locked-icon {
+            font-size: 3.5rem;
+            margin-bottom: 12px;
+        }
+
+        .teacher-bypass-zone {
+            margin-top: 35px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .bypass-input {
+            width: 80px;
+            padding: 4px 8px;
+            border: 1px solid #f1f5f9;
+            background: #ffffff;
+            color: #94a3b8;
+            font-size: 0.78rem;
+            border-radius: 4px;
+            text-align: center;
+            outline: none;
+        }
+
+        .bypass-input:focus {
+            border-color: #cbd5e1;
+            color: #475569;
+        }
+
+        .bypass-btn {
+            background: #ffffff;
+            border: 1px solid #f1f5f9;
+            color: #cbd5e1;
+            font-size: 0.75rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .bypass-btn:hover {
+            color: #64748b;
+            border-color: #e2e8f0;
+        }
+
+        /* Action Bar at bottom of Quiz */
+        .quiz-footer {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            padding: 18px 24px;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            margin-top: 20px;
+        }
+
+        /* Report Modal / Card */
+        .report-box {
+            background: #1e293b;
+            color: #f8fafc;
+            padding: 20px;
+            border-radius: 12px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            margin: 16px 0;
+            font-size: 0.92rem;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- HEADER -->
+    <header class="app-header">
+        <h1>Vật Lí 10 • Ôn Tập Chương 1: Mở Đầu</h1>
+        <p>TỔNG HỢP KIẾN THỨC TRỌNG TÂM & BÀI TẬP THỰC TẾ</p>
+        <div class="topic-pills">
+            <span class="topic-pill">Chủ đề 1: Làm quen với Vật lí</span>
+            <span class="topic-pill">Chủ đề 2: An toàn trong Vật lí</span>
+            <span class="topic-pill">Chủ đề 3: Sai số & Ghi kết quả đo</span>
+        </div>
+    </header>
+
+    <!-- 1. ONBOARDING SCREEN -->
+    <section id="onboarding-screen" class="card">
+        <h2 style="margin-bottom: 8px; color: var(--primary);">🚀 Khởi động Chinh phục Chương 1</h2>
+        <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 0.95rem;">
+            Hãy nhập đầy đủ thông tin cá nhân và mục tiêu của em trước khi bước vào 3 cấp độ thử thách nhé!
+        </p>
+
+        <form id="onboarding-form">
+            <div class="form-group">
+                <label for="st-name">Họ và tên học sinh *</label>
+                <input type="text" id="st-name" class="form-control" placeholder="Ví dụ: Trần Minh Khôi" required>
+            </div>
+            <div class="form-group">
+                <label for="st-class">Lớp *</label>
+                <input type="text" id="st-class" class="form-control" placeholder="Ví dụ: 10A2" required>
+            </div>
+            <div class="form-group">
+                <label for="st-target">Mục tiêu điểm số môn Vật lí *</label>
+                <input type="text" id="st-target" class="form-control" placeholder="Ví dụ: 9.0+ điểm kiểm tra Chương 1" required>
+            </div>
+            <div class="form-group">
+                <label for="st-dream">Ước mơ của em trong tương lai *</label>
+                <input type="text" id="st-dream" class="form-control" placeholder="Ví dụ: Kỹ sư Vi mạch bán dẫn / Bác sĩ / Kiến trúc sư..." required>
+            </div>
+            <button type="submit" class="btn btn-primary">BẮT ĐẦU ÔN TẬP CHƯƠNG 1</button>
+        </form>
+    </section>
+
+    <!-- 2. MAIN PRACTICE SCREEN -->
+    <section id="practice-screen" class="hidden">
+        <!-- Student Info Summary -->
+        <div class="student-bar">
+            <div>👤 Học sinh: <span id="disp-name"></span> (<span id="disp-class"></span>)</div>
+            <div>🎯 Mục tiêu: <span id="disp-target"></span></div>
+            <div>⏱️ Thời gian: <span id="disp-timer">00:00</span></div>
+        </div>
+
+        <!-- Level Selector Tabs -->
+        <div class="level-tabs">
+            <div class="level-tab active" id="tab-lvl-1" onclick="switchLevel(1)">
+                <div class="level-tab-title">🌱 Cấp độ 1</div>
+                <div class="level-tab-sub">12 câu • Nhận biết & Hiểu</div>
+            </div>
+            <div class="level-tab locked" id="tab-lvl-2" onclick="switchLevel(2)">
+                <div class="level-tab-title"><span id="lock-icon-2">🔒</span> Cấp độ 2</div>
+                <div class="level-tab-sub">5 câu • Vận dụng (7-8đ)</div>
+            </div>
+            <div class="level-tab locked" id="tab-lvl-3" onclick="switchLevel(3)">
+                <div class="level-tab-title"><span id="lock-icon-3">🔒</span> Cấp độ 3</div>
+                <div class="level-tab-sub">5 câu • Vận dụng cao (9-10đ)</div>
+            </div>
+        </div>
+
+        <!-- Level Status & Progression Banner -->
+        <div class="level-status-banner" id="level-banner">
+            <div id="banner-text">
+                <strong>Yêu cầu Cấp độ 1:</strong> Đạt điểm tuyệt đối <strong>12/12</strong> đủ <strong>3 lượt</strong> để mở khóa Cấp độ 2!
+            </div>
+            <div class="badge-streaks" id="streak-stars">
+                <div class="star-slot" id="star-1">★</div>
+                <div class="star-slot" id="star-2">★</div>
+                <div class="star-slot" id="star-3">★</div>
+            </div>
+        </div>
+
+        <!-- Locked Level View (For Level 2 & 3 when locked) -->
+        <div id="locked-view" class="card locked-screen hidden">
+            <div class="locked-icon">🔒</div>
+            <h3 id="locked-title" style="margin-bottom: 8px;">Cấp độ này đang bị khóa!</h3>
+            <p id="locked-desc" style="color: var(--text-muted); max-width: 520px; margin: 0 auto 20px;">
+                Em cần hoàn thành yêu cầu của cấp độ trước để mở khóa thử thách này.
+            </p>
+            <button class="btn btn-outline" onclick="switchLevel(1)">Quay lại luyện tập</button>
+
+            <!-- Subtle Teacher Bypass -->
+            <div class="teacher-bypass-zone">
+                <input type="password" id="bypass-code" class="bypass-input" placeholder="Mã GV" maxlength="6">
+                <button class="bypass-btn" onclick="checkBypass()">Mở</button>
+            </div>
+        </div>
+
+        <!-- Quiz Content Container -->
+        <div id="quiz-view">
+            <div id="questions-container"></div>
+
+            <div class="quiz-footer">
+                <div>
+                    📊 Tiến độ lượt này: <strong id="current-progress-text">0/12</strong> câu đã trả lời
+                    | Đúng: <strong id="current-score-text" style="color: var(--success);">0</strong>
+                </div>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button class="btn btn-outline" onclick="retryCurrentLevel()">🔄 Làm lượt mới (Trộn đề)</button>
+                    <button class="btn btn-success" onclick="showReportModal()">📋 Hoàn thành & Xem báo cáo</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. REPORT / SUMMARY MODAL CARD -->
+    <section id="report-screen" class="card hidden">
+        <h2 style="color: var(--primary); margin-bottom: 8px;">🏆 BÁO CÁO KẾT QUẢ ÔN TẬP CHƯƠNG 1</h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">
+            Sao chép bảng tổng kết bên dưới và gửi cho thầy/cô qua Zalo hoặc hệ thống học tập nhé!
+        </p>
+
+        <div id="report-content" class="report-box"></div>
+
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <button class="btn btn-primary" style="flex: 2;" onclick="copyReport()">📋 Sao chép kết quả nộp bài</button>
+            <button class="btn btn-outline" style="flex: 1;" onclick="closeReportModal()">⬅ Quay lại làm tiếp</button>
+        </div>
+        <p id="copy-toast" style="color: var(--success); font-weight: 600; margin-top: 10px; text-align: center;" class="hidden">
+            ✅ Đã sao chép thành công vào bộ nhớ tạm (Clipboard)!
+        </p>
+    </section>
+</div>
+
+<script>
+/* ============================================================================
+   1. HỆ THỐNG ÂM THANH TƯƠNG TÁC (WEB AUDIO API THUẦN)
+   ============================================================================ */
+const AudioFX = {
+    ctx: null,
+    init() {
+        if (!this.ctx) {
+            this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (this.ctx.state === 'suspended') {
+            this.ctx.resume();
+        }
+    },
+    playCorrect() {
+        try {
+            this.init();
+            const now = this.ctx.currentTime;
+            const notes = [523.25, 659.25, 783.99, 1046.50];
+            notes.forEach((freq, idx) => {
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(freq, now + idx * 0.07);
+                gain.gain.setValueAtTime(0.22, now + idx * 0.07);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.07 + 0.2);
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+                osc.start(now + idx * 0.07);
+                osc.stop(now + idx * 0.07 + 0.2);
+            });
+        } catch (e) {}
+    },
+    playWrong() {
+        try {
+            this.init();
+            const now = this.ctx.currentTime;
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(220, now);
+            osc.frequency.linearRampToValueAtTime(110, now + 0.35);
+            gain.gain.setValueAtTime(0.2, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.38);
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            osc.start(now);
+            osc.stop(now + 0.38);
+        } catch (e) {}
+    },
+    playUnlock() {
+        try {
+            this.init();
+            const now = this.ctx.currentTime;
+            const fanfare = [523.25, 659.25, 783.99, 1046.50, 783.99, 1046.50];
+            const times = [0, 0.1, 0.2, 0.3, 0.45, 0.6];
+            fanfare.forEach((freq, idx) => {
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(freq, now + times[idx]);
+                gain.gain.setValueAtTime(0.28, now + times[idx]);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + times[idx] + 0.25);
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+                osc.start(now + times[idx]);
+                osc.stop(now + times[idx] + 0.25);
+            });
+        } catch (e) {}
+    }
+};
+
+/* ============================================================================
+   2. ĐỒ HỌA VECTOR SVG THUẦN (BIỂN BÁO AN TOÀN, THƯỚC ĐO, NHIỆT KẾ)
+   ============================================================================ */
+const Diagrams = {
+    // Biển cảnh báo chất phóng xạ (Câu 11 Chủ đề 2)
+    radiationSign: `
+        <svg width="130" height="115" viewBox="0 0 130 115" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="65,8 122,105 8,105" fill="#facc15" stroke="#1e293b" stroke-width="5" stroke-linejoin="round"/>
+            <!-- Trefoil radiation symbol -->
+            <circle cx="65" cy="72" r="5" fill="#1e293b"/>
+            <path d="M 65 72 L 50 48 A 26 26 0 0 1 80 48 Z" fill="#1e293b"/>
+            <path d="M 65 72 L 92 72 A 26 26 0 0 1 78 95 Z" fill="#1e293b"/>
+            <path d="M 65 72 L 52 95 A 26 26 0 0 1 38 72 Z" fill="#1e293b"/>
+            <circle cx="65" cy="72" r="8" fill="none" stroke="#facc15" stroke-width="3"/>
+        </svg>
+    `,
+    // 4 Biển báo Hình 1, 2, 3, 4 (Câu 23, 24, 25 Chủ đề 2)
+    fourSafetySigns: `
+        <svg width="520" height="135" viewBox="0 0 520 135" xmlns="http://www.w3.org/2000/svg">
+            <!-- Hình 1: Chất độc môi trường -->
+            <g transform="translate(15, 10)">
+                <rect x="0" y="0" width="105" height="90" fill="white" stroke="#64748b" stroke-width="1.5"/>
+                <polygon points="52,10 92,78 12,78" fill="#facc15" stroke="#1e293b" stroke-width="3" stroke-linejoin="round"/>
+                <!-- Dead tree & fish symbol -->
+                <line x1="48" y1="70" x2="48" y2="42" stroke="#1e293b" stroke-width="2.5"/>
+                <line x1="48" y1="52" x2="38" y2="44" stroke="#1e293b" stroke-width="2"/>
+                <line x1="48" y1="48" x2="58" y2="40" stroke="#1e293b" stroke-width="2"/>
+                <ellipse cx="60" cy="66" rx="9" ry="4" fill="#1e293b" transform="rotate(-15 60 66)"/>
+                <text x="52" y="112" font-size="13" font-weight="bold" text-anchor="middle" fill="#1e293b">Hình 1</text>
+            </g>
+            <!-- Hình 2: Cảnh báo từ trường -->
+            <g transform="translate(145, 10)">
+                <rect x="0" y="0" width="105" height="90" fill="white" stroke="#64748b" stroke-width="1.5"/>
+                <polygon points="52,10 92,78 12,78" fill="#facc15" stroke="#1e293b" stroke-width="3" stroke-linejoin="round"/>
+                <!-- Horseshoe magnet -->
+                <path d="M 42 68 L 42 50 A 10 10 0 0 1 62 50 L 62 68" fill="none" stroke="#1e293b" stroke-width="6"/>
+                <rect x="39" y="66" width="6" height="6" fill="#dc2626"/>
+                <rect x="59" y="66" width="6" height="6" fill="#dc2626"/>
+                <text x="52" y="112" font-size="13" font-weight="bold" text-anchor="middle" fill="#1e293b">Hình 2</text>
+            </g>
+            <!-- Hình 3: Chất ăn mòn -->
+            <g transform="translate(275, 10)">
+                <rect x="0" y="0" width="105" height="90" fill="white" stroke="#64748b" stroke-width="1.5"/>
+                <polygon points="52,8 92,45 52,82 12,45" fill="white" stroke="#dc2626" stroke-width="4"/>
+                <!-- Test tubes dripping corrosion -->
+                <line x1="36" y1="32" x2="48" y2="40" stroke="#1e293b" stroke-width="3"/>
+                <line x1="68" y1="32" x2="56" y2="40" stroke="#1e293b" stroke-width="3"/>
+                <circle cx="48" cy="46" r="2" fill="#1e293b"/>
+                <circle cx="56" cy="46" r="2" fill="#1e293b"/>
+                <rect x="32" y="54" width="40" height="5" fill="#1e293b"/>
+                <text x="52" y="112" font-size="13" font-weight="bold" text-anchor="middle" fill="#1e293b">Hình 3</text>
+            </g>
+            <!-- Hình 4: Tránh ánh nắng trực tiếp -->
+            <g transform="translate(405, 10)">
+                <rect x="0" y="0" width="105" height="90" fill="white" stroke="#64748b" stroke-width="1.5"/>
+                <!-- Sun & Roof -->
+                <circle cx="52" cy="32" r="9" fill="none" stroke="#1e293b" stroke-width="2"/>
+                <line x1="52" y1="15" x2="52" y2="20" stroke="#1e293b" stroke-width="2"/>
+                <line x1="35" y1="32" x2="40" y2="32" stroke="#1e293b" stroke-width="2"/>
+                <line x1="64" y1="32" x2="69" y2="32" stroke="#1e293b" stroke-width="2"/>
+                <line x1="40" y1="20" x2="44" y2="24" stroke="#1e293b" stroke-width="2"/>
+                <line x1="64" y1="20" x2="60" y2="24" stroke="#1e293b" stroke-width="2"/>
+                <polyline points="28,62 52,46 76,62" fill="none" stroke="#1e293b" stroke-width="3"/>
+                <rect x="44" y="62" width="16" height="14" fill="#1e293b"/>
+                <text x="52" y="112" font-size="13" font-weight="bold" text-anchor="middle" fill="#1e293b">Hình 4</text>
+            </g>
+        </svg>
+    `,
+    // Thước đo chiều dài cây bút chì (Câu 15 Chủ đề 3: ĐCNN = 0,5 cm, đầu bút chỉ 5,5 cm)
+    pencilRuler: `
+        <svg width="420" height="120" viewBox="0 0 420 120" xmlns="http://www.w3.org/2000/svg">
+            <!-- Pencil (from x=40 (0cm) to x=205 (5.5cm), scale: 1cm = 30px) -->
+            <rect x="40" y="18" width="14" height="18" rx="2" fill="#f43f5e" stroke="#1e293b" stroke-width="1.5"/>
+            <rect x="54" y="18" width="6" height="18" fill="#cbd5e1" stroke="#1e293b" stroke-width="1.5"/>
+            <rect x="60" y="18" width="125" height="18" fill="#facc15" stroke="#1e293b" stroke-width="1.5"/>
+            <line x1="60" y1="24" x2="185" y2="24" stroke="#ca8a04" stroke-width="1"/>
+            <line x1="60" y1="30" x2="185" y2="30" stroke="#ca8a04" stroke-width="1"/>
+            <polygon points="185,18 205,27 185,36" fill="#fde68a" stroke="#1e293b" stroke-width="1.5"/>
+            <polygon points="198,24 205,27 198,30" fill="#1e293b"/>
+            <!-- Dashed projection lines -->
+            <line x1="40" y1="36" x2="40" y2="55" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="3,3"/>
+            <line x1="205" y1="27" x2="205" y2="55" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="3,3"/>
+            <!-- Ruler body -->
+            <rect x="25" y="55" width="370" height="50" fill="#f8fafc" stroke="#1e293b" stroke-width="2"/>
+            <!-- Ticks: 0 to 10 cm (x = 40 + i*30), half-cm ticks every 15px -->
+            <g stroke="#1e293b">
+                <!-- Major ticks (1 cm) -->
+                <line x1="40" y1="55" x2="40" y2="75" stroke-width="2"/>
+                <line x1="70" y1="55" x2="70" y2="75" stroke-width="2"/>
+                <line x1="100" y1="55" x2="100" y2="75" stroke-width="2"/>
+                <line x1="130" y1="55" x2="130" y2="75" stroke-width="2"/>
+                <line x1="160" y1="55" x2="160" y2="75" stroke-width="2"/>
+                <line x1="190" y1="55" x2="190" y2="75" stroke-width="2"/>
+                <line x1="220" y1="55" x2="220" y2="75" stroke-width="2"/>
+                <line x1="250" y1="55" x2="250" y2="75" stroke-width="2"/>
+                <line x1="280" y1="55" x2="280" y2="75" stroke-width="2"/>
+                <line x1="310" y1="55" x2="310" y2="75" stroke-width="2"/>
+                <line x1="340" y1="55" x2="340" y2="75" stroke-width="2"/>
+                <!-- Half-cm ticks (0.5 cm) -->
+                <line x1="55" y1="55" x2="55" y2="67" stroke-width="1.5"/>
+                <line x1="85" y1="55" x2="85" y2="67" stroke-width="1.5"/>
+                <line x1="115" y1="55" x2="115" y2="67" stroke-width="1.5"/>
+                <line x1="145" y1="55" x2="145" y2="67" stroke-width="1.5"/>
+                <line x1="175" y1="55" x2="175" y2="67" stroke-width="1.5"/>
+                <line x1="205" y1="55" x2="205" y2="67" stroke-width="2" stroke="#dc2626"/>
+                <line x1="235" y1="55" x2="235" y2="67" stroke-width="1.5"/>
+                <line x1="265" y1="55" x2="265" y2="67" stroke-width="1.5"/>
+                <line x1="295" y1="55" x2="295" y2="67" stroke-width="1.5"/>
+                <line x1="325" y1="55" x2="325" y2="67" stroke-width="1.5"/>
+            </g>
+            <!-- Numbers -->
+            <g font-size="13" font-weight="bold" text-anchor="middle" fill="#1e293b">
+                <text x="40" y="93">0</text>
+                <text x="70" y="93">1</text>
+                <text x="100" y="93">2</text>
+                <text x="130" y="93">3</text>
+                <text x="160" y="93">4</text>
+                <text x="190" y="93">5</text>
+                <text x="220" y="93">6</text>
+                <text x="250" y="93">7</text>
+                <text x="280" y="93">8</text>
+                <text x="310" y="93">9</text>
+                <text x="348" y="93">10 cm</text>
+            </g>
+        </svg>
+    `,
+    // Hình 3.1 Nhiệt kế trước và sau khi đun dung dịch (Câu 1 Đúng/Sai Chủ đề 3: t1 = 24°C, t2 = 68°C, ĐCNN = 1°C)
+    thermometers: `
+        <svg width="460" height="115" viewBox="0 0 460 115" xmlns="http://www.w3.org/2000/svg">
+            <!-- Nhiệt kế a) Trước khi đun: 20 đến 30, vạch ở 24 -->
+            <g transform="translate(20, 15)">
+                <text x="0" y="15" font-size="15" font-weight="bold">20</text>
+                <text x="60" y="15" font-size="15" font-weight="bold">25</text>
+                <text x="120" y="15" font-size="15" font-weight="bold">30 (°C)</text>
+                <!-- Mercury bar up to 24 (x = 10 + 4*12 = 58) -->
+                <rect x="10" y="42" width="120" height="12" fill="#f1f5f9" stroke="#1e293b" stroke-width="1.5"/>
+                <rect x="10" y="42" width="48" height="12" fill="#ef4444"/>
+                <!-- Ticks every 12px -->
+                <g stroke="#1e293b" stroke-width="1.5">
+                    <line x1="10" y1="22" x2="10" y2="42" stroke-width="2.5"/>
+                    <line x1="22" y1="30" x2="22" y2="42"/>
+                    <line x1="34" y1="30" x2="34" y2="42"/>
+                    <line x1="46" y1="30" x2="46" y2="42"/>
+                    <line x1="58" y1="26" x2="58" y2="54" stroke="#dc2626" stroke-width="2"/>
+                    <line x1="70" y1="22" x2="70" y2="42" stroke-width="2.5"/>
+                    <line x1="82" y1="30" x2="82" y2="42"/>
+                    <line x1="94" y1="30" x2="94" y2="42"/>
+                    <line x1="106" y1="30" x2="106" y2="42"/>
+                    <line x1="118" y1="30" x2="118" y2="42"/>
+                    <line x1="130" y1="22" x2="130" y2="42" stroke-width="2.5"/>
+                </g>
+                <text x="70" y="80" font-size="14" font-weight="bold" text-anchor="middle" fill="#0f766e">a) Trước khi đun (t₁)</text>
+            </g>
+
+            <!-- Nhiệt kế b) Sau khi đun: 60 đến 70, vạch ở 68 -->
+            <g transform="translate(250, 15)">
+                <text x="0" y="15" font-size="15" font-weight="bold">60</text>
+                <text x="60" y="15" font-size="15" font-weight="bold">65</text>
+                <text x="120" y="15" font-size="15" font-weight="bold">70 (°C)</text>
+                <!-- Mercury bar up to 68 (x = 10 + 8*12 = 106) -->
+                <rect x="10" y="42" width="120" height="12" fill="#f1f5f9" stroke="#1e293b" stroke-width="1.5"/>
+                <rect x="10" y="42" width="96" height="12" fill="#ef4444"/>
+                <!-- Ticks every 12px -->
+                <g stroke="#1e293b" stroke-width="1.5">
+                    <line x1="10" y1="22" x2="10" y2="42" stroke-width="2.5"/>
+                    <line x1="22" y1="30" x2="22" y2="42"/>
+                    <line x1="34" y1="30" x2="34" y2="42"/>
+                    <line x1="46" y1="30" x2="46" y2="42"/>
+                    <line x1="58" y1="30" x2="58" y2="42"/>
+                    <line x1="70" y1="22" x2="70" y2="42" stroke-width="2.5"/>
+                    <line x1="82" y1="30" x2="82" y2="42"/>
+                    <line x1="94" y1="30" x2="94" y2="42"/>
+                    <line x1="106" y1="26" x2="106" y2="54" stroke="#dc2626" stroke-width="2"/>
+                    <line x1="118" y1="30" x2="118" y2="42"/>
+                    <line x1="130" y1="22" x2="130" y2="42" stroke-width="2.5"/>
+                </g>
+                <text x="70" y="80" font-size="14" font-weight="bold" text-anchor="middle" fill="#dc2626">b) Sau khi đun (t₂)</text>
+            </g>
+        </svg>
+    `
+};
+
+/* ============================================================================
+   3. NGÂN HÀNG CÂU HỎI ÔN TẬP CHƯƠNG 1 (TỔNG HỢP CHỦ ĐỀ 1, 2, 3)
+   ============================================================================ */
+const QUESTION_BANK = {
+    // CẤP ĐỘ 1: 12 CÂU (NHẬN BIẾT & THÔNG HIỂU CĂN BẢN: 4 câu CĐ1 + 4 câu CĐ2 + 4 câu CĐ3)
+    1: [
+        {
+            id: 'C1_L1_1',
+            topic: 'Chủ đề 1: Làm quen với Vật lí',
+            q: 'Đối tượng nghiên cứu tập trung của môn Vật lí là gì?',
+            options: [
+                'Các dạng vận động của vật chất (chất, trường) và năng lượng.',
+                'Sự cấu tạo, tính chất và sự biến đổi của các chất hóa học.',
+                'Sự sinh trưởng, phát triển của các loài sinh vật và vi khuẩn.',
+                'Lịch sử hình thành và phát triển của xã hội loài người.'
+            ],
+            correct: 0,
+            exp: 'Vật lí là môn khoa học tự nhiên nghiên cứu tập trung vào các dạng vận động của vật chất (chất, trường) và năng lượng, cũng như tương tác giữa chúng.'
+        },
+        {
+            id: 'C1_L1_2',
+            topic: 'Chủ đề 1: Làm quen với Vật lí',
+            q: 'Ai được mệnh danh là “cha đẻ” của phương pháp thực nghiệm nhờ thí nghiệm thả rơi các vật tại tháp nghiêng Pisa?',
+            options: [
+                'Galilei.',
+                'Aristotle.',
+                'Isaac Newton.',
+                'Albert Einstein.'
+            ],
+            correct: 0,
+            exp: 'Năm 1600, với thí nghiệm tại tháp nghiêng Pisa kiểm chứng sự rơi nhanh hay chậm không phụ thuộc vật nặng hay nhẹ, Galilei được xem là cha đẻ của phương pháp thực nghiệm.'
+        },
+        {
+            id: 'C1_L1_3',
+            topic: 'Chủ đề 1: Làm quen với Vật lí',
+            q: 'Thành tựu nghiên cứu Vật lí nào đóng vai trò mở đầu cho cuộc Cách mạng công nghiệp lần thứ nhất (gắn với máy hơi nước của James Watt năm 1765)?',
+            options: [
+                'Nghiên cứu về Nhiệt động lực học.',
+                'Khám phá về hiện tượng cảm ứng điện từ của Faraday.',
+                'Nghiên cứu về điện tử, chất bán dẫn và vi mạch.',
+                'Nghiên cứu về trí tuệ nhân tạo (AI) và công nghệ nano.'
+            ],
+            correct: 0,
+            exp: 'CMCN lần 1 gắn với máy hơi nước (Nhiệt động lực học); CMCN lần 2 gắn với máy phát điện (Cảm ứng điện từ); CMCN lần 3 gắn với bán dẫn, tự động hóa; CMCN lần 4 gắn với AI, IoT, công nghệ nano.'
+        },
+        {
+            id: 'C1_L1_4',
+            topic: 'Chủ đề 1: Làm quen với Vật lí',
+            q: 'Cách sắp xếp nào sau đây đúng thứ tự 5 bước trong tiến trình tìm hiểu thế giới tự nhiên dưới góc độ Vật lí?',
+            options: [
+                'Quan sát hiện tượng → Đề xuất vấn đề → Hình thành giả thuyết → Kiểm tra giả thuyết → Rút ra kết luận.',
+                'Đề xuất vấn đề → Quan sát hiện tượng → Kiểm tra giả thuyết → Hình thành giả thuyết → Rút ra kết luận.',
+                'Hình thành giả thuyết → Quan sát hiện tượng → Đề xuất vấn đề → Kiểm tra giả thuyết → Rút ra kết luận.',
+                'Kiểm tra giả thuyết → Quan sát hiện tượng → Đề xuất vấn đề → Hình thành giả thuyết → Rút ra kết luận.'
+            ],
+            correct: 0,
+            exp: 'Tiến trình chuẩn gồm 5 bước: (1) Quan sát, suy luận → (2) Đề xuất vấn đề → (3) Hình thành giả thuyết → (4) Kiểm tra giả thuyết (nếu sai thì điều chỉnh) → (5) Rút ra kết luận.'
+        },
+        {
+            id: 'C1_L1_5',
+            topic: 'Chủ đề 2: An toàn trong Vật lí',
+            q: 'Ba quy tắc vàng để đảm bảo an toàn khi làm việc với nguồn phóng xạ là gì?',
+            options: [
+                'Giảm thời gian tiếp xúc, tăng khoảng cách đến nguồn và đảm bảo che chắn các cơ quan trọng yếu.',
+                'Tăng thời gian tiếp xúc, giảm khoảng cách đến nguồn và mặc áo quần thông thường.',
+                'Giảm khoảng cách đến nguồn, tăng thời gian tiếp xúc và đeo kính râm.',
+                'Chỉ cần đứng xa nguồn phóng xạ mà không cần che chắn hay giới hạn thời gian.'
+            ],
+            correct: 0,
+            exp: 'Theo Chủ đề 2: 3 quy tắc an toàn phóng xạ là: (1) Giảm thời gian tiếp xúc; (2) Tăng khoảng cách từ người đến nguồn; (3) Đảm bảo che chắn những cơ quan trọng yếu.'
+        },
+        {
+            id: 'C1_L1_6',
+            topic: 'Chủ đề 2: An toàn trong Vật lí',
+            q: 'Trên các thiết bị điện trong phòng thí nghiệm, kí hiệu **AC** (hoặc dấu $\\sim$) và kí hiệu **DC** (hoặc dấu $-$) lần lượt cho biết:',
+            options: [
+                'AC là dòng điện xoay chiều; DC là dòng điện một chiều.',
+                'AC là dòng điện một chiều; DC là dòng điện xoay chiều.',
+                'AC là cực dương của nguồn; DC là cực âm của nguồn.',
+                'AC là đầu vào (Input); DC là đầu ra (Output).'
+            ],
+            correct: 0,
+            exp: 'AC (Alternating Current - dấu $\\sim$) là dòng điện xoay chiều; DC (Direct Current - dấu $-$) là dòng điện một chiều.'
+        },
+        {
+            id: 'C1_L1_7',
+            topic: 'Chủ đề 2: An toàn trong Vật lí',
+            q: 'Biển cảnh báo hình tam giác vàng có biểu tượng 3 cánh quạt màu đen dưới đây cho biết điều gì?',
+            svg: Diagrams.radiationSign,
+            options: [
+                'Cảnh báo nơi có chất phóng xạ.',
+                'Cảnh báo nguy hiểm về điện cao thế.',
+                'Cảnh báo tia laser nguy hiểm cho mắt.',
+                'Cảnh báo chất độc đối với môi trường.'
+            ],
+            correct: 0,
+            exp: 'Biểu tượng 3 cánh quạt đồng tâm trên nền tam giác vàng là biển cảnh báo quốc tế cho "Nơi có chất phóng xạ".'
+        },
+        {
+            id: 'C1_L1_8',
+            topic: 'Chủ đề 2: An toàn trong Vật lí',
+            q: 'Hoạt động nào sau đây **không đảm bảo** an toàn khi làm việc trong phòng thực hành Vật lí?',
+            options: [
+                'Tiếp xúc trực tiếp với các vật và thiết bị có nhiệt độ cao mà không dùng dụng cụ bảo hộ.',
+                'Tắt công tắc nguồn thiết bị điện trước khi cắm hoặc tháo thiết bị điện.',
+                'Đọc kỹ hướng dẫn sử dụng và kiểm tra hiệu điện thế định mức trước khi cắm điện.',
+                'Giữ khoảng cách an toàn khi làm thí nghiệm với tia laser hoặc vật nung nóng.'
+            ],
+            correct: 0,
+            exp: 'Không đeo găng tay chịu nhiệt hoặc dụng cụ bảo hộ khi tiếp xúc thiết bị nhiệt độ cao sẽ rất dễ gây bỏng hoặc làm rơi vỡ dụng cụ thủy tinh.'
+        },
+        {
+            id: 'C1_L1_9',
+            topic: 'Chủ đề 3: Sai số phép đo',
+            q: 'Sự sai lệch do đặc điểm và cấu tạo của dụng cụ đo gây ra (có tính quy luật và lặp lại ở tất cả các lần đo, ví dụ vạch đầu không đúng số 0) được gọi là:',
+            options: [
+                'Sai số hệ thống.',
+                'Sai số ngẫu nhiên.',
+                'Sai số tỉ đối.',
+                'Giá trị trung bình.'
+            ],
+            correct: 0,
+            exp: 'Sai số xuất phát từ bản thân dụng cụ đo, có tính quy luật và lặp lại giống nhau ở mọi lần đo gọi là sai số hệ thống (khắc phục bằng cách hiệu chỉnh dụng cụ trước khi đo).'
+        },
+        {
+            id: 'C1_L1_10',
+            topic: 'Chủ đề 3: Sai số phép đo',
+            q: 'Gọi $\\overline{A}$ là giá trị trung bình, $\\overline{\\Delta A}$ là sai số ngẫu nhiên trung bình và $\\Delta A_{dc}$ là sai số dụng cụ. Sai số tuyệt đối $\\Delta A$ và sai số tỉ đối $\\delta A$ của phép đo lần lượt là:',
+            options: [
+                '$\\Delta A = \\overline{\\Delta A} + \\Delta A_{dc}$ và $\\delta A = \\frac{\\Delta A}{\\overline{A}} \\cdot 100\\%$',
+                '$\\Delta A = \\overline{\\Delta A} - \\Delta A_{dc}$ và $\\delta A = \\frac{\\overline{A}}{\\Delta A} \\cdot 100\\%$',
+                '$\\Delta A = \\overline{\\Delta A} \\cdot \\Delta A_{dc}$ và $\\delta A = \\frac{\\overline{\\Delta A}}{\\overline{A}} \\cdot 100\\%$',
+                '$\\Delta A = \\overline{\\Delta A} + \\Delta A_{dc}$ và $\\delta A = \\frac{\\Delta A_{dc}}{\\overline{A}} \\cdot 100\\%$'
+            ],
+            correct: 0,
+            exp: 'Sai số tuyệt đối bằng tổng sai số ngẫu nhiên trung bình và sai số dụng cụ: $\\Delta A = \\overline{\\Delta A} + \\Delta A_{dc}$. Sai số tỉ đối cho biết mức độ chính xác của phép đo: $\\delta A = \\frac{\\Delta A}{\\overline{A}} \\cdot 100\\%$.'
+        },
+        {
+            id: 'C1_L1_11',
+            topic: 'Chủ đề 3: Sai số phép đo',
+            q: 'Khi đo quãng đường di chuyển của một xe lăn, kết quả thu được viết là $s = 125,86 \\pm 1,55\\text{ (cm)}$. Con số $1,55\\text{ cm}$ được gọi là:',
+            options: [
+                'Sai số tuyệt đối của phép đo.',
+                'Quãng đường trung bình.',
+                'Sai số tỉ đối của phép đo.',
+                'Độ chia nhỏ nhất của thước.'
+            ],
+            correct: 0,
+            exp: 'Theo cách ghi kết quả đo $s = \\overline{s} \\pm \\Delta s = 125,86 \\pm 1,55\\text{ (cm)}$, thì $\\overline{s} = 125,86\\text{ cm}$ là giá trị trung bình và $\\Delta s = 1,55\\text{ cm}$ là sai số tuyệt đối.'
+        },
+        {
+            id: 'C1_L1_12',
+            topic: 'Chủ đề 3: Sai số phép đo',
+            q: 'Một bánh xe hình tròn có bán kính đo được là $R = 10,0 \\pm 0,5\\text{ cm}$. Sai số tương đối (tỉ đối) của chu vi bánh xe ($C = 2\\pi R$) là:',
+            options: [
+                '$5\\%$',
+                '$10\\%$',
+                '$0,05\\%$',
+                '$2,5\\%$'
+            ],
+            correct: 0,
+            exp: 'Ta có chu vi $C = 2\\pi R \\Rightarrow \\delta C = \\delta R = \\frac{\\Delta R}{\\overline{R}} \\cdot 100\\% = \\frac{0,5}{10,0} \\cdot 100\\% = 5\\%$.'
+        }
+    ],
+
+    // CẤP ĐỘ 2: 5 CÂU (VẬN DỤNG 7-8 ĐIỂM - KẾT HỢP HÌNH ẢNH THỰC TẾ & 1 CÂU BẪY TINH TẾ)
+    2: [
+        {
+            id: 'C1_L2_1',
+            topic: 'Chủ đề 1: Phương pháp nghiên cứu',
+            q: 'Trong các hoạt động nghiên cứu Vật lí dưới đây, hoạt động nào sử dụng **phương pháp thực nghiệm** (không phải phương pháp mô hình hay lí thuyết)?',
+            options: [
+                'Thả rơi các vật khác nhau từ trên cao xuống mặt đất để kiểm tra sự rơi nhanh hay chậm.',
+                'Coi một chiếc ô tô đang chạy trên quãng đường dài từ Hà Nội vào Vinh là một “chất điểm”.',
+                'Dùng các mũi tên (vectơ) để biểu diễn các đại lượng có hướng như lực, vận tốc.',
+                'Tính toán quỹ đạo chuyển động của Sao Hỏa và Mặt Trăng dựa vào các phương trình toán học.'
+            ],
+            correct: 0,
+            exp: 'Coi ô tô là chất điểm, dùng tia sáng/vectơ hay tính toán quỹ đạo bằng toán học đều thuộc phương pháp mô hình (mô hình vật chất, lí thuyết, toán học). Trực tiếp thả rơi vật để kiểm chứng giả thuyết là phương pháp thực nghiệm.'
+        },
+        {
+            id: 'C1_L2_2',
+            topic: 'Chủ đề 2: Biển báo phòng thí nghiệm',
+            q: 'Quan sát 4 biển báo an toàn trong phòng thí nghiệm dưới đây. Hãy cho biết biển báo **Cảnh báo chất độc với môi trường**, **Cảnh báo chất ăn mòn** và **Tránh ánh nắng trực tiếp** lần lượt ứng với các hình nào?',
+            svg: Diagrams.fourSafetySigns,
+            options: [
+                'Hình 1 – Hình 3 – Hình 4.',
+                'Hình 1 – Hình 2 – Hình 4.',
+                'Hình 3 – Hình 1 – Hình 2.',
+                'Hình 2 – Hình 3 – Hình 4.'
+            ],
+            correct: 0,
+            exp: 'Theo bảng kí hiệu Chủ đề 2: Hình 1 (cây khô và cá chết) là Chất độc môi trường; Hình 2 (nam châm chữ U) là Cảnh báo từ trường; Hình 3 (ống nghiệm nhỏ giọt ăn mòn) là Chất ăn mòn; Hình 4 (mái nhà che mặt trời) là Tránh ánh nắng trực tiếp.'
+        },
+        {
+            id: 'C1_L2_3',
+            topic: 'Chủ đề 3: Đọc kết quả đo & Làm tròn',
+            q: 'Biết sai số dụng cụ bằng một nửa độ chia nhỏ nhất ($\\frac{1}{2}\\text{ĐCNN}$) và sai số tuyệt đối được làm tròn đến 1 chữ số có nghĩa. Kết quả đo chiều dài $L$ của cây bút chì trong hình vẽ dưới đây là:',
+            svg: Diagrams.pencilRuler,
+            options: [
+                '$L = 5,5 \\pm 0,3\\text{ cm}$',
+                '$L = 5,5 \\pm 0,25\\text{ cm}$',
+                '$L = 5,0 \\pm 0,3\\text{ cm}$',
+                '$L = 5,5 \\pm 0,5\\text{ cm}$'
+            ],
+            correct: 0,
+            exp: 'Trên thước, khoảng cách $1\\text{ cm}$ được chia làm 2 phần bằng nhau nên $\\text{ĐCNN} = 0,5\\text{ cm}$. Đầu bút chì trùng vạch $5,5\\text{ cm}$. Sai số dụng cụ $\\Delta L = \\frac{0,5}{2} = 0,25\\text{ cm}$. Vì $\\overline{L} = 5,5\\text{ cm}$ có 1 chữ số sau dấu phẩy nên $\\Delta L$ làm tròn đến bậc phần mười là $0,3\\text{ cm} \\Rightarrow L = 5,5 \\pm 0,3\\text{ cm}$.'
+        },
+        {
+            id: 'C1_L2_4',
+            topic: 'Chủ đề 3: Xử lí bảng số liệu thực hành',
+            q: 'Một học sinh thả rơi một viên bi qua quãng đường cố định và dùng đồng hồ bấm giây (có sai số dụng cụ $\\Delta t_{dc} = 0,001\\text{ s}$) đo thời gian rơi trong 4 lần được kết quả: $t_1 = 0,452\\text{ s};\\ t_2 = 0,450\\text{ s};\\ t_3 = 0,453\\text{ s};\\ t_4 = 0,449\\text{ s}$. Giá trị trung bình $\\overline{t}$ và sai số tuyệt đối $\\Delta t$ của phép đo này là:',
+            options: [
+                '$\\overline{t} = 0,451\\text{ s}$ và $\\Delta t = 0,0025\\text{ s}$',
+                '$\\overline{t} = 0,451\\text{ s}$ và $\\Delta t = 0,0015\\text{ s}$',
+                '$\\overline{t} = 0,450\\text{ s}$ và $\\Delta t = 0,0025\\text{ s}$',
+                '$\\overline{t} = 0,451\\text{ s}$ và $\\Delta t = 0,0010\\text{ s}$'
+            ],
+            correct: 0,
+            exp: 'Giá trị trung bình: $\\overline{t} = \\frac{0,452 + 0,450 + 0,453 + 0,449}{4} = 0,451\\text{ s}$. Sai số tuyệt đối các lần đo: $\\Delta t_1 = 0,001;\\ \\Delta t_2 = 0,001;\\ \\Delta t_3 = 0,002;\\ \\Delta t_4 = 0,002 \\Rightarrow \\overline{\\Delta t} = \\frac{0,006}{4} = 0,0015\\text{ s}$. Sai số tuyệt đối của phép đo: $\\Delta t = \\overline{\\Delta t} + \\Delta t_{dc} = 0,0015 + 0,001 = 0,0025\\text{ s}$.'
+        },
+        {
+            id: 'C1_L2_5_TRAP',
+            topic: '⚠️ Câu hỏi Bẫy: Chữ số có nghĩa & Làm tròn',
+            q: '⚠️ [Câu hỏi rèn sự cẩn thận] Cho hai số liệu đo chiều dài là $A = 0,0130\\text{ m}$ và $B = 12,40\\text{ m}$. Mặt khác, một học sinh đo gia tốc rơi tự do tính được $\\overline{g} = 9,7166667\\text{ m/s}^2$ và $\\Delta g = 0,0681212\\text{ m/s}^2$. Nếu lấy $\\Delta g$ đến 1 chữ số có nghĩa, hãy cho biết số chữ số có nghĩa (CSCN) của $A, B$ và cách viết kết quả đo $g$ đúng quy ước?',
+            options: [
+                '$A$ có 3 CSCN, $B$ có 4 CSCN; $g = 9,72 \\pm 0,07\\text{ (m/s}^2\\text{)}$.',
+                '$A$ có 5 CSCN, $B$ có 4 CSCN; $g = 9,72 \\pm 0,07\\text{ (m/s}^2\\text{)}$.',
+                '$A$ có 2 CSCN, $B$ có 3 CSCN; $g = 9,717 \\pm 0,068\\text{ (m/s}^2\\text{)}$.',
+                '$A$ có 3 CSCN, $B$ có 4 CSCN; $g = 9,71 \\pm 0,06\\text{ (m/s}^2\\text{)}$.'
+            ],
+            correct: 0,
+            exp: '💡 BẪY ĐẾM SỐ 0: Các số $0$ ở đầu KHÔNG có nghĩa, còn các số $0$ ở cuối số thập phân LÀ số có nghĩa! Do đó $A = 0,0130$ có 3 CSCN ($1, 3, 0$); $B = 12,40$ có 4 CSCN ($1, 2, 4, 0$). Với $\\Delta g = 0,0681212$ làm tròn 1 CSCN thành $0,07$ (2 chữ số thập phân), nên $\\overline{g} = 9,7166667$ phải làm tròn tương ứng đến 2 chữ số thập phân là $9,72 \\Rightarrow g = 9,72 \\pm 0,07\\text{ (m/s}^2\\text{)}$.'
+        }
+    ],
+
+    // CẤP ĐỘ 3: 5 CÂU (VẬN DỤNG CAO 9-10 ĐIỂM - SAI SỐ GIÁN TIẾP & BẪY TƯ DUY)
+    3: [
+        {
+            id: 'C1_L3_1',
+            topic: 'Chủ đề 3: Sai số phép đo gián tiếp',
+            q: 'Hình vẽ dưới đây thể hiện nhiệt kế đo nhiệt độ $t_1\\text{ (}^\\circ\\text{C)}$ trước khi đun và $t_2\\text{ (}^\\circ\\text{C)}$ sau khi đun của một dung dịch. Biết sai số dụng cụ bằng một nửa độ chia nhỏ nhất. Kết quả độ tăng nhiệt độ $\\Delta T = t_2 - t_1$ của dung dịch được viết đúng là:',
+            svg: Diagrams.thermometers,
+            options: [
+                '$\\Delta T = 44,0 \\pm 1,0\\text{ }^\\circ\\text{C}$',
+                '$\\Delta T = 44,0 \\pm 0,5\\text{ }^\\circ\\text{C}$',
+                '$\\Delta T = 44,0 \\pm 0,0\\text{ }^\\circ\\text{C}$',
+                '$\\Delta T = 43,0 \\pm 1,0\\text{ }^\\circ\\text{C}$'
+            ],
+            correct: 0,
+            exp: 'Nhiệt kế có $\\text{ĐCNN} = 1\\text{ }^\\circ\\text{C}$ nên sai số mỗi lần đo là $0,5\\text{ }^\\circ\\text{C}$. Từ hình vẽ: $t_1 = 24,0 \\pm 0,5\\text{ }^\\circ\\text{C}$ và $t_2 = 68,0 \\pm 0,5\\text{ }^\\circ\\text{C}$. Độ tăng nhiệt độ trung bình $\\overline{\\Delta T} = 68,0 - 24,0 = 44,0\\text{ }^\\circ\\text{C}$. Lưu ý quy tắc sai số của một hiệu bằng TỔNG sai số tuyệt đối: $\\Delta(\\Delta T) = \\Delta t_2 + \\Delta t_1 = 0,5 + 0,5 = 1,0\\text{ }^\\circ\\text{C}$. Vậy $\\Delta T = 44,0 \\pm 1,0\\text{ }^\\circ\\text{C}$.'
+        },
+        {
+            id: 'C1_L3_2',
+            topic: 'Chủ đề 3: Đo gia tốc bằng con lắc đơn',
+            q: 'Để đo gia tốc rơi tự do $g$, một học sinh dùng con lắc đơn có chu kì $T = 2\\pi\\sqrt{\\frac{\\ell}{g}}$ và đo được chiều dài dây $\\ell = 0,350 \\pm 0,005\\text{ (m)}$, chu kì dao động $T = 1,18 \\pm 0,02\\text{ (s)}$. Lấy $\\pi^2 \\approx 9,87$. Kết quả phép đo gia tốc trọng trường $g = \\overline{g} \\pm \\Delta g$ là:',
+            options: [
+                '$g = 9,92 \\pm 0,50\\text{ m/s}^2$',
+                '$g = 9,92 \\pm 0,05\\text{ m/s}^2$',
+                '$g = 9,80 \\pm 0,25\\text{ m/s}^2$',
+                '$g = 9,92 \\pm 0,34\\text{ m/s}^2$'
+            ],
+            correct: 0,
+            exp: 'Từ $T = 2\\pi\\sqrt{\\frac{\\ell}{g}} \\Rightarrow g = \\frac{4\\pi^2 \\ell}{T^2}$. Giá trị trung bình: $\\overline{g} = 4\\pi^2 \\frac{0,350}{1,18^2} \\approx 9,92\\text{ m/s}^2$. Sai số tỉ đối: $\\delta g = \\delta\\ell + 2\\delta T = \\frac{0,005}{0,350} + 2 \\cdot \\frac{0,02}{1,18} \\approx 0,0482 \\approx 5\\%$. Sai số tuyệt đối: $\\Delta g = \\overline{g} \\cdot \\delta g \\approx 9,92 \\times 0,05 \\approx 0,50\\text{ m/s}^2$. Vậy $g = 9,92 \\pm 0,50\\text{ m/s}^2$.'
+        },
+        {
+            id: 'C1_L3_3',
+            topic: 'Chủ đề 3: Sai số thể tích & diện tích toàn phần',
+            q: 'Kết quả đo cạnh của một khối lập phương là $a = 2,00 \\pm 0,01\\text{ cm}$. Kết quả đo thể tích $V$ và diện tích toàn phần (6 mặt) $S$ của khối lập phương đó lần lượt là (theo tài liệu Chủ đề 3):',
+            options: [
+                '$V = 8,00 \\pm 0,12\\text{ (cm}^3\\text{)}$; $S = 24,00 \\pm 0,24\\text{ (cm}^2\\text{)}$',
+                '$V = 8,00 \\pm 0,04\\text{ (cm}^3\\text{)}$; $S = 24,00 \\pm 0,06\\text{ (cm}^2\\text{)}$',
+                '$V = 8,00 \\pm 0,01\\text{ (cm}^3\\text{)}$; $S = 24,00 \\pm 0,01\\text{ (cm}^2\\text{)}$',
+                '$V = 24,00 \\pm 0,24\\text{ (cm}^3\\text{)}$; $S = 8,00 \\pm 0,12\\text{ (cm}^2\\text{)}$'
+            ],
+            correct: 0,
+            exp: 'Thể tích $\\overline{V} = a^3 = 2,00^3 = 8,00\\text{ cm}^3$; $\\delta V = 3\\frac{\\Delta a}{\\overline{a}} = 3 \\cdot \\frac{0,01}{2,00} = 0,015 \\Rightarrow \\Delta V = 8,00 \\times 0,015 = 0,12\\text{ cm}^3$. Diện tích 1 mặt $S_1 = a^2 = 4,00\\text{ cm}^2$, diện tích 6 mặt $\\overline{S} = 6a^2 = 24,00\\text{ cm}^2$ với $\\Delta S = 6 \\cdot \\Delta(a^2) = 6 \\cdot (2 \\cdot \\frac{0,01}{2,00} \\cdot 4,00) = 0,24\\text{ cm}^2$.'
+        },
+        {
+            id: 'C1_L3_4',
+            topic: 'Chủ đề 3: Sai số phép đo áp suất',
+            q: 'Một lực $F$ tác dụng vuông góc lên một bề mặt tiết diện hình vuông có cạnh là $L$, gây ra áp suất $P = \\frac{F}{S} = \\frac{F}{L^2}$. Nếu sai số tỉ đối trong phép đo cạnh $L$ là $2\\%$ và sai số tỉ đối trong phép đo lực $F$ là $4\\%$, thì sai số tỉ đối của phép đo áp suất $P$ là:',
+            options: [
+                '$8\\%$',
+                '$6\\%$',
+                '$2\\%$',
+                '$0\\%$'
+            ],
+            correct: 0,
+            exp: 'Áp dụng quy tắc tính sai số tỉ đối của một thương và lũy thừa: Từ $P = \\frac{F}{L^2} \\Rightarrow \\delta P = \\delta F + 2\\delta L = 4\\% + 2 \\times 2\\% = 8\\%$ (Lưu ý: Sai số tỉ đối luôn cộng thêm chứ không trừ đi!).'
+        },
+        {
+            id: 'C1_L3_5_TRAP',
+            topic: '⚠️ Câu hỏi Bẫy Nâng cao: Sai số tỉ đối của Hiệu',
+            q: '⚠️ [Câu hỏi bẫy Vận dụng cao] Giả sử chiều dài của hai đoạn thẳng đo được lần lượt là $a = 51 \\pm 1\\text{ cm}$ và $b = 49 \\pm 1\\text{ cm}$. Một học sinh tính toán các đại lượng gián tiếp: tổng $X_1 = a + b$, hiệu $X_2 = a - b$ và tích $X_3 = a \\cdot b$. Cặp giá trị sai số tỉ đối $(\\delta X_1;\\ \\delta X_2;\\ \\delta X_3)$ gần đúng nhất là:',
+            options: [
+                '$\\delta X_1 = 2\\%;\\ \\delta X_2 = 100\\%;\\ \\delta X_3 \\approx 4\\%$',
+                '$\\delta X_1 = 2\\%;\\ \\delta X_2 = 0\\%;\\ \\delta X_3 \\approx 4\\%$',
+                '$\\delta X_1 = 4\\%;\\ \\delta X_2 = 2\\%;\\ \\delta X_3 \\approx 2\\%$',
+                '$\\delta X_1 = 1\\%;\\ \\delta X_2 = 100\\%;\\ \\delta X_3 \\approx 1\\%$'
+            ],
+            correct: 0,
+            exp: '💡 BẪY SAI SỐ CỦA HIỆU: Với phép trừ $X_2 = a - b$, giá trị trung bình là $\\overline{X_2} = 51 - 49 = 2\\text{ cm}$, nhưng sai số tuyệt đối phải CỘNG DỒN: $\\Delta X_2 = \\Delta a + \\Delta b = 1 + 1 = 2\\text{ cm}$ (không được lấy $1 - 1 = 0$!). Do đó $\\delta X_2 = \\frac{2}{2} \\cdot 100\\% = 100\\%$! Trong khi đó $\\delta X_1 = \\frac{1+1}{51+49} = 2\\%$ và $\\delta X_3 = \\frac{1}{51} + \\frac{1}{49} \\approx 4\\%$.'
+        }
+    ]
+};
+
+/* ============================================================================
+   4. QUẢN LÝ TRẠNG THÁI ỨNG DỤNG (STATE MANAGEMENT)
+   ============================================================================ */
+const AppState = {
+    student: { name: '', className: '', target: '', dream: '' },
+    startTime: null,
+    timerInterval: null,
+    elapsedSeconds: 0,
+    currentLevel: 1,
+    unlockedLevels: { 1: true, 2: false, 3: false },
+    stats: {
+        1: { attempts: 0, perfectStreaks: 0, bestScore: 0, totalQuestions: 12 },
+        2: { attempts: 0, completed: false, bestScore: 0, totalQuestions: 5 },
+        3: { attempts: 0, completed: false, bestScore: 0, totalQuestions: 5 }
+    },
+    activeQuiz: {
+        questions: [],
+        answeredCount: 0,
+        correctCount: 0,
+        isFinishedAttempt: false
+    }
+};
+
+/* ============================================================================
+   5. THUẬT TOÁN XÁO TRỘN FISHER-YATES
+   ============================================================================ */
+function shuffleArray(array) {
+    const arr = [...array];
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+
+/* ============================================================================
+   6. LOGIC KHỞI ĐỘNG & ĐỒNG HỒ ĐẾM GIỜ
+   ============================================================================ */
+document.getElementById('onboarding-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    AppState.student.name = document.getElementById('st-name').value.trim();
+    AppState.student.className = document.getElementById('st-class').value.trim();
+    AppState.student.target = document.getElementById('st-target').value.trim();
+    AppState.student.dream = document.getElementById('st-dream').value.trim();
+
+    document.getElementById('disp-name').textContent = AppState.student.name;
+    document.getElementById('disp-class').textContent = AppState.student.className;
+    document.getElementById('disp-target').textContent = AppState.student.target;
+
+    document.getElementById('onboarding-screen').classList.add('hidden');
+    document.getElementById('practice-screen').classList.remove('hidden');
+
+    AudioFX.init();
+    startTimer();
+    loadLevelQuiz(1);
+});
+
+function startTimer() {
+    AppState.startTime = Date.now();
+    AppState.timerInterval = setInterval(() => {
+        AppState.elapsedSeconds = Math.floor((Date.now() - AppState.startTime) / 1000);
+        const mins = String(Math.floor(AppState.elapsedSeconds / 60)).padStart(2, '0');
+        const secs = String(AppState.elapsedSeconds % 60).padStart(2, '0');
+        document.getElementById('disp-timer').textContent = `${mins}:${secs}`;
+    }, 1000);
+}
+
+function formatDuration(sec) {
+    const m = Math.floor(sec / 60);
+    const s = sec % 60;
+    return `${m} phút ${s} giây`;
+}
+
+/* ============================================================================
+   7. LOGIC CHUYỂN CẤP ĐỘ, MỞ KHÓA & MÃ GIÁO VIÊN (1819)
+   ============================================================================ */
+function switchLevel(lvl) {
+    AppState.currentLevel = lvl;
+
+    [1, 2, 3].forEach(i => {
+        const tab = document.getElementById(`tab-lvl-${i}`);
+        tab.classList.toggle('active', i === lvl);
+        tab.classList.toggle('locked', !AppState.unlockedLevels[i]);
+        if (i > 1) {
+            document.getElementById(`lock-icon-${i}`).textContent = AppState.unlockedLevels[i] ? (i === 2 ? '⚡' : '🔥') : '🔒';
+        }
+    });
+
+    updateBannerUI();
+
+    if (!AppState.unlockedLevels[lvl]) {
+        document.getElementById('quiz-view').classList.add('hidden');
+        document.getElementById('locked-view').classList.remove('hidden');
+        document.getElementById('bypass-code').value = '';
+        if (lvl === 2) {
+            document.getElementById('locked-title').textContent = '🔒 Cấp độ 2 (Vận dụng) đang khóa';
+            document.getElementById('locked-desc').innerHTML = `Em cần tích lũy đủ <strong>3 lượt đạt 12/12 câu</strong> ở Cấp độ 1 để mở khóa Cấp độ 2.<br>(Hiện tại em đã đạt: <strong>${AppState.stats[1].perfectStreaks}/3</strong> lượt tuyệt đối).`;
+        } else {
+            document.getElementById('locked-title').textContent = '🔒 Cấp độ 3 (Vận dụng cao) đang khóa';
+            document.getElementById('locked-desc').innerHTML = `Em cần hoàn thành đạt yêu cầu (5/5 câu) ở <strong>Cấp độ 2</strong> để mở khóa Cấp độ 3.`;
+        }
+    } else {
+        document.getElementById('locked-view').classList.add('hidden');
+        document.getElementById('quiz-view').classList.remove('hidden');
+        loadLevelQuiz(lvl);
+    }
+}
+
+function checkBypass() {
+    const code = document.getElementById('bypass-code').value.trim();
+    if (code === '1819') {
+        AppState.unlockedLevels[AppState.currentLevel] = true;
+        AudioFX.playUnlock();
+        switchLevel(AppState.currentLevel);
+    } else {
+        AudioFX.playWrong();
+        document.getElementById('bypass-code').value = '';
+    }
+}
+
+function updateBannerUI() {
+    const lvl = AppState.currentLevel;
+    const bannerText = document.getElementById('banner-text');
+    const streakStars = document.getElementById('streak-stars');
+
+    if (lvl === 1) {
+        streakStars.classList.remove('hidden');
+        bannerText.innerHTML = `<strong>Cấp độ 1 (Nhận biết - Thông hiểu Chương 1):</strong> Tích lũy đủ <strong>3 lượt 12/12</strong> để mở khóa Cấp độ 2! (Đã đạt: <strong>${AppState.stats[1].perfectStreaks}/3</strong>)`;
+        for (let i = 1; i <= 3; i++) {
+            const star = document.getElementById(`star-${i}`);
+            star.classList.toggle('filled', i <= AppState.stats[1].perfectStreaks);
+        }
+    } else if (lvl === 2) {
+        streakStars.classList.add('hidden');
+        bannerText.innerHTML = `<strong>Cấp độ 2 (Vận dụng 7-8 điểm):</strong> Hoàn thành đúng cả <strong>5/5 câu</strong> (có 1 câu bẫy chữ số có nghĩa & làm tròn) để mở khóa Cấp độ 3!`;
+    } else {
+        streakStars.classList.add('hidden');
+        bannerText.innerHTML = `<strong>Cấp độ 3 (Vận dụng cao 9-10 điểm):</strong> Bài toán sai số phép đo gián tiếp thực tế & bẫy sai số của hiệu!`;
+    }
+}
+
+/* ============================================================================
+   8. TẠO ĐỀ TRỘN NGẪU NHIÊN & PHẢN HỒI TỨC THÌ
+   ============================================================================ */
+function loadLevelQuiz(lvl) {
+    const rawQuestions = QUESTION_BANK[lvl];
+    const shuffledQuestions = shuffleArray(rawQuestions).map(q => {
+        const optionObjects = q.options.map((text, idx) => ({
+            text,
+            isCorrect: idx === q.correct
+        }));
+        return {
+            ...q,
+            shuffledOptions: shuffleArray(optionObjects),
+            userAnswered: false
+        };
+    });
+
+    AppState.activeQuiz = {
+        questions: shuffledQuestions,
+        answeredCount: 0,
+        correctCount: 0,
+        isFinishedAttempt: false
+    };
+
+    renderQuestions();
+    updateFooterProgress();
+}
+
+function retryCurrentLevel() {
+    loadLevelQuiz(AppState.currentLevel);
+    window.scrollTo({ top: 120, behavior: 'smooth' });
+}
+
+function renderQuestions() {
+    const container = document.getElementById('questions-container');
+    container.innerHTML = '';
+    const labels = ['A', 'B', 'C', 'D'];
+
+    AppState.activeQuiz.questions.forEach((q, qIdx) => {
+        const card = document.createElement('div');
+        card.className = 'question-card';
+        card.id = `q-card-${qIdx}`;
+
+        let svgHTML = q.svg ? `<div class="svg-container">${q.svg}</div>` : '';
+
+        let optionsHTML = '';
+        q.shuffledOptions.forEach((opt, optIdx) => {
+            optionsHTML += `
+                <button class="option-btn" id="btn-${qIdx}-${optIdx}" onclick="selectOption(${qIdx}, ${optIdx})">
+                    <span class="option-label">${labels[optIdx]}</span>
+                    <span class="option-content">${opt.text}</span>
+                </button>
+            `;
+        });
+
+        card.innerHTML = `
+            <div class="question-header">
+                <div class="question-badges">
+                    <span class="question-number">Câu ${qIdx + 1} / ${AppState.activeQuiz.questions.length}</span>
+                    <span class="question-topic-tag">${q.topic}</span>
+                </div>
+                <span id="q-status-${qIdx}" style="font-weight: 600; font-size: 0.9rem;"></span>
+            </div>
+            <div class="question-text">${q.q}</div>
+            ${svgHTML}
+            <div class="options-grid">
+                ${optionsHTML}
+            </div>
+            <div id="exp-${qIdx}" class="explanation-box hidden"></div>
+        `;
+
+        container.appendChild(card);
+    });
+
+    renderMath();
+}
+
+function selectOption(qIdx, optIdx) {
+    const q = AppState.activeQuiz.questions[qIdx];
+    if (q.userAnswered) return;
+
+    q.userAnswered = true;
+    AppState.activeQuiz.answeredCount++;
+
+    const chosenOpt = q.shuffledOptions[optIdx];
+    const isCorrect = chosenOpt.isCorrect;
+
+    q.shuffledOptions.forEach((opt, i) => {
+        const btn = document.getElementById(`btn-${qIdx}-${i}`);
+        btn.disabled = true;
+        if (opt.isCorrect) {
+            btn.classList.add('correct');
+        } else if (i === optIdx && !isCorrect) {
+            btn.classList.add('wrong');
+        }
+    });
+
+    const statusEl = document.getElementById(`q-status-${qIdx}`);
+    const expEl = document.getElementById(`exp-${qIdx}`);
+    expEl.classList.remove('hidden');
+
+    if (isCorrect) {
+        AppState.activeQuiz.correctCount++;
+        AudioFX.playCorrect();
+        statusEl.innerHTML = '<span style="color: var(--success);">✅ Chính xác!</span>';
+        expEl.className = 'explanation-box correct-exp';
+        expEl.innerHTML = `<strong>🎉 Chính xác! Giải thích:</strong> ${q.exp}`;
+    } else {
+        AudioFX.playWrong();
+        statusEl.innerHTML = '<span style="color: var(--danger);">❌ Chưa đúng!</span>';
+        expEl.className = 'explanation-box wrong-exp';
+        expEl.innerHTML = `<strong>💡 Ghi nhớ kiến thức nhé:</strong> ${q.exp}`;
+    }
+
+    renderMath(expEl);
+    updateFooterProgress();
+
+    if (AppState.activeQuiz.answeredCount === AppState.activeQuiz.questions.length) {
+        handleAttemptCompletion();
+    }
+}
+
+function updateFooterProgress() {
+    const total = AppState.activeQuiz.questions.length;
+    document.getElementById('current-progress-text').textContent = `${AppState.activeQuiz.answeredCount}/${total}`;
+    document.getElementById('current-score-text').textContent = `${AppState.activeQuiz.correctCount}/${total}`;
+}
+
+function handleAttemptCompletion() {
+    if (AppState.activeQuiz.isFinishedAttempt) return;
+    AppState.activeQuiz.isFinishedAttempt = true;
+
+    const lvl = AppState.currentLevel;
+    const score = AppState.activeQuiz.correctCount;
+    const total = AppState.activeQuiz.questions.length;
+
+    AppState.stats[lvl].attempts++;
+    if (score > AppState.stats[lvl].bestScore) {
+        AppState.stats[lvl].bestScore = score;
+    }
+
+    if (lvl === 1) {
+        if (score === total) {
+            AppState.stats[1].perfectStreaks = Math.min(3, AppState.stats[1].perfectStreaks + 1);
+            updateBannerUI();
+            if (AppState.stats[1].perfectStreaks >= 3 && !AppState.unlockedLevels[2]) {
+                AppState.unlockedLevels[2] = true;
+                AudioFX.playUnlock();
+                setTimeout(() => {
+                    alert('🎉 CHÚC MỪNG EM! Em đã hoàn thành đủ 3 lượt đạt điểm tuyệt đối 12/12 ở Cấp độ 1 và chính thức MỞ KHÓA CẤP ĐỘ 2!');
+                    switchLevel(2);
+                }, 400);
+            } else {
+                AudioFX.playUnlock();
+                setTimeout(() => {
+                    alert(`🌟 Tuyệt vời! Em vừa đạt 12/12 câu! Tiến độ mở khóa Cấp độ 2: ${AppState.stats[1].perfectStreaks}/3 lượt. Hãy bấm "Làm lượt mới (Trộn đề)" để tích lũy tiếp nhé!`);
+                }, 300);
+            }
+        }
+    } else if (lvl === 2) {
+        if (score === total) {
+            AppState.stats[2].completed = true;
+            if (!AppState.unlockedLevels[3]) {
+                AppState.unlockedLevels[3] = true;
+                AudioFX.playUnlock();
+                setTimeout(() => {
+                    alert('🔥 XUẤT SẮC! Em đã vượt qua Cấp độ 2 với điểm tuyệt đối 5/5 và chính thức MỞ KHÓA CẤP ĐỘ 3 (Vận dụng cao)!');
+                    switchLevel(3);
+                }, 400);
+            }
+        }
+    } else if (lvl === 3) {
+        if (score === total) {
+            AppState.stats[3].completed = true;
+            AudioFX.playUnlock();
+            setTimeout(() => {
+                alert('👑 CHINH PHỤC HOÀN TOÀN CHƯƠNG 1! Em đã đạt điểm tuyệt đối ở cả Cấp độ 3! Hãy bấm "Hoàn thành & Xem báo cáo" để gửi kết quả cho thầy/cô nhé!');
+            }, 400);
+        }
+    }
+}
+
+/* ============================================================================
+   9. BÁO CÁO KẾT QUẢ & SAO CHÉP CLIPBOARD
+   ============================================================================ */
+function showReportModal() {
+    document.getElementById('practice-screen').classList.add('hidden');
+    document.getElementById('report-screen').classList.remove('hidden');
+    document.getElementById('copy-toast').classList.add('hidden');
+
+    const s1 = AppState.stats[1];
+    const s2 = AppState.stats[2];
+    const s3 = AppState.stats[3];
+
+    const reportText = 
+`=========================================
+📚 BÁO CÁO ÔN TẬP CHƯƠNG 1: MỞ ĐẦU (VẬT LÍ 10)
+(Chủ đề 1 + Chủ đề 2 + Chủ đề 3)
+=========================================
+👤 Học sinh: ${AppState.student.name}
+🏫 Lớp: ${AppState.student.className}
+🎯 Mục tiêu: ${AppState.student.target}
+✨ Ước mơ: ${AppState.student.dream}
+⏱️ Thời gian ôn tập: ${formatDuration(AppState.elapsedSeconds)}
+-----------------------------------------
+📊 KẾT QUẢ CHI TIẾT TỪNG CẤP ĐỘ:
+🌱 Cấp độ 1 (Nhận biết - Thông hiểu):
+   • Số lượt đã làm: ${s1.attempts} lượt
+   • Điểm cao nhất: ${s1.bestScore}/${s1.totalQuestions} câu
+   • Số lượt đạt tuyệt đối (12/12): ${s1.perfectStreaks}/3 lượt
+
+⚡ Cấp độ 2 (Vận dụng 7-8đ):
+   • Trạng thái: ${AppState.unlockedLevels[2] ? 'Đã mở khóa' : 'Chưa mở khóa'}
+   • Số lượt đã làm: ${s2.attempts} lượt
+   • Điểm cao nhất: ${s2.bestScore}/${s2.totalQuestions} câu
+
+🔥 Cấp độ 3 (Vận dụng cao 9-10đ):
+   • Trạng thái: ${AppState.unlockedLevels[3] ? 'Đã mở khóa' : 'Chưa mở khóa'}
+   • Số lượt đã làm: ${s3.attempts} lượt
+   • Điểm cao nhất: ${s3.bestScore}/${s3.totalQuestions} câu
+=========================================`;
+
+    document.getElementById('report-content').textContent = reportText;
+}
+
+function closeReportModal() {
+    document.getElementById('report-screen').classList.add('hidden');
+    document.getElementById('practice-screen').classList.remove('hidden');
+}
+
+function copyReport() {
+    const text = document.getElementById('report-content').textContent;
+    navigator.clipboard.writeText(text).then(() => {
+        const toast = document.getElementById('copy-toast');
+        toast.classList.remove('hidden');
+        AudioFX.playCorrect();
+    }).catch(() => {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        document.getElementById('copy-toast').classList.remove('hidden');
+        AudioFX.playCorrect();
+    });
+}
+
+/* ============================================================================
+   10. HÀM HỖ TRỢ RENDER KATEX
+   ============================================================================ */
+function renderMath(element = document.body) {
+    if (window.renderMathInElement) {
+        renderMathInElement(element, {
+            delimiters: [
+                { left: '$$', right: '$$', display: true },
+                { left: '$', right: '$', display: false }
+            ],
+            throwOnError: false
+        });
+    } else {
+        setTimeout(() => renderMath(element), 200);
+    }
+}
+</script>
+
+</body>
+</html>
